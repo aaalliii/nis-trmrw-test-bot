@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Bot - Dark Theme</title>
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #f0f0f0;
+      font-family: 'Arial', sans-serif;
+      padding: 20px;
+      margin: 0;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      color: #f0f0f0;
+      margin-top: 0;
+    }
+    p {
+      margin: 1em 0;
+      word-wrap: break-word;
+    }
+    a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
+    pre {
+      background-color: #333;
+      color: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+      overflow-x: auto;
+      max-width: 100%;
+    }
+    blockquote {
+      border-left: 4px solid #555;
+      padding-left: 10px;
+      color: #aaa;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+    }
+    button {
+      display: block;
+      margin: 10px auto;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    iframe {
+      width: 80%;
+      height: 1000px;
+      border: 2px solid #007BFF;
+      margin-top: 20px;
+      background-color: #333;
+    }
+    .home-btn {
+      display: none;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container" id="button-container"></div>
+<button class="home-btn" id="homeButton" onclick="goHome()">Home</button>
+<iframe id="viewer" style="display:none;"></iframe>
+
+<script>
+  const pagesDirectory = '/pages';
+  const htmlFiles = ['page1.html', 'page2.html', 'page3.html'];
+
+  const buttonContainer = document.getElementById('button-container');
+  const viewer = document.getElementById('viewer');
+  const homeButton = document.getElementById('homeButton');
+
+  htmlFiles.forEach(file => {
+    const button = document.createElement('button');
+    button.textContent = file;
+    button.onclick = () => viewFile(file);
+    buttonContainer.appendChild(button);
+  });
+
+  function viewFile(file) {
+    viewer.src = `${pagesDirectory}/${file}`;
+    viewer.style.display = 'block';
+    buttonContainer.style.display = 'none';
+    homeButton.style.display = 'block';
+  }
+
+  function goHome() {
+    viewer.style.display = 'none';
+    buttonContainer.style.display = 'block';
+    homeButton.style.display = 'none';
+  }
+</script>
+</body>
+</html>
